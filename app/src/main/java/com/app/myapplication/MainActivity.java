@@ -41,12 +41,16 @@ public class MainActivity extends AppCompatActivity {
                     public void processFinish(String output) {
                         if(output == "error")
                         {
-                            status.setText("Niepoprawne");
+                            status.setText("Błąd połączenia");
                         }
                            else {
                             status.setText("Poprawne");
-                            final String heart = output.substring(0, 3);
-                            final String oxy = output.substring(4, 6);
+                            String toSplit=output;
+                            String[] tempArr;
+                            tempArr=toSplit.split(":");
+
+                            final String heart = tempArr[0];
+                            final String oxy = tempArr[1];
                             text_hr.setText(heart);
                             text_ox.setText(oxy);
                         }
