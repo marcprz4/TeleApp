@@ -1,19 +1,29 @@
 package com.app.myapplication;
 
-import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.util.concurrent.ExecutionException;
-
 public class MainActivity extends AppCompatActivity {
 
-    private TextView text_hr, text_ox, status;
-    private Button button;
+    private TextView hr, so;//, status;
+    private Button refreshButton;
+    private Button connectionButton;
+    private Button settingsButton;
+    private Animation fromBottom;
+    private Animation fromTop;
+    private Animation fromSide;
+    private TextView textView;
+    private TextView textView2;
+    private TextView textView3;
+    private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +35,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
-        text_hr=findViewById(R.id.text_view_result);
-        text_ox=findViewById(R.id.text_view_result_ox);
-        status=findViewById(R.id.status);
-        button=findViewById(R.id.connect);
+        fromBottom= AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        fromTop= AnimationUtils.loadAnimation(this,R.anim.fromtop);
+        fromSide= AnimationUtils.loadAnimation(this,R.anim.fromside);
+        hr =findViewById(R.id.hr);
+        so =findViewById(R.id.so);//
+//        status=findViewById(R.id.status);
+        refreshButton =findViewById(R.id.refreshButton);//
+        connectionButton =findViewById(R.id.connectionButton);
+        settingsButton =findViewById(R.id.settingsButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        textView =findViewById(R.id.textView);
+        textView2 =findViewById(R.id.textView2);
+        textView3 =findViewById(R.id.textView3);//
+        imageView =findViewById(R.id.imageView);
+
+        textView3.setAnimation(fromBottom);
+        refreshButton.setAnimation(fromBottom);
+        connectionButton.setAnimation(fromTop);
+        settingsButton.setAnimation(fromTop);
+        textView.setAnimation(fromTop);
+        textView2.setAnimation(fromTop);
+        imageView.setAnimation(fromTop);
+
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //AsyncTaskExample asyncTask=new AsyncTaskExample();
@@ -41,18 +70,18 @@ public class MainActivity extends AppCompatActivity {
                     public void processFinish(String output) {
                         if(output == "error")
                         {
-                            status.setText("Błąd połączenia");
+//                            status.setText("Błąd połączenia");
                         }
                            else {
-                            status.setText("Poprawne");
+//                            status.setText("Poprawne");
                             String toSplit=output;
                             String[] tempArr;
                             tempArr=toSplit.split(":");
 
-                            final String heart = tempArr[0];
-                            final String oxy = tempArr[1];
-                            text_hr.setText(heart);
-                            text_ox.setText(oxy);
+                            hr.setText(tempArr[0]);
+                            so.setText(tempArr[1]+"%");
+                            so.setAnimation(fromSide);
+                            hr.setAnimation(fromSide);
                         }
                     }
                 },"https://marcinprzybylsk.000webhostapp.com").execute();

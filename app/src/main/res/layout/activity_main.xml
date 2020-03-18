@@ -1,113 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".MainActivity">
-
-
-    <TextView
-
-        android:id="@+id/textView"
-        android:layout_width="65dp"
-        android:layout_height="37dp"
-        android:gravity="center"
-        android:text="Puls"
-        android:textColor="#ffffff"
-        android:textSize="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351" />
-
-    <TextView
-
-        android:id="@+id/textView4"
-        android:layout_width="170dp"
-        android:layout_height="56dp"
-        android:gravity="center"
-        android:text="Natlenienie"
-        android:textColor="#ffffff"
-        android:textSize="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
-
-    <TextView
-        android:id="@+id/text_view_result"
-        android:layout_width="153dp"
-        android:layout_height="93dp"
-        android:gravity="center"
-        android:textColor="#ff0000"
-        android:textSize="22pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454" />
-
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
     <Button
-        android:id="@+id/connect"
-        android:layout_width="128dp"
-        android:layout_height="74dp"
-        android:gravity="center"
-        android:text="Połącz z czujnikiem"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.376" />
-
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/settingsButton"
+            android:background="@drawable/ic_settings_applications_24px" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="345dp" android:layout_marginStart="345dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"/>
+    <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/connectionButton"
+            android:background="@drawable/ic_perm_scan_wifi_24px" android:layout_marginTop="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/settingsButton" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="345dp" android:layout_marginStart="345dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"/>
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="132dp"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:text="Status połączenia:"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect"
-        app:layout_constraintVertical_bias="0.313" />
-
+            android:text="HeartDoctor"
+            android:layout_width="203dp"
+            android:layout_height="79dp"
+            android:id="@+id/textView" android:textSize="36sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="22dp" android:layout_marginStart="22dp" android:layout_marginTop="28dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+            android:layout_marginEnd="31dp" android:layout_marginRight="31dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" app:srcCompat="@drawable/ic_healing_24px"
+            android:id="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="28dp" app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/settingsButton" android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp" app:layout_constraintHorizontal_bias="0.0"/>
     <TextView
-        android:id="@+id/status"
-        android:layout_width="108dp"
-        android:layout_height="33dp"
-        android:gravity="center"
-        android:text="Niepoprawne"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
-
+            android:text="Tętno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="166dp" android:layout_marginStart="166dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="167dp"
+            android:layout_marginRight="167dp" android:layout_marginTop="92dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintHorizontal_bias="0.0"/>
     <TextView
-        android:id="@+id/text_view_result_ox"
-        android:layout_width="172dp"
-        android:layout_height="113dp"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:textSize="22pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.113" />
-
-
-    //dodać do natlenienia wynik
-
+            android:text="Saturacja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" android:textSize="30sp"
+            android:layout_marginTop="28dp" app:layout_constraintTop_toBottomOf="@+id/hr"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="142dp"
+            android:layout_marginStart="142dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="143dp" android:layout_marginRight="143dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/so" android:textSize="64sp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="182dp" android:layout_marginStart="182dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="182dp"
+            android:layout_marginRight="182dp"
+            app:layout_constraintHorizontal_bias="0.489" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            android:textColor="#0098D4"/>
+    <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/refreshButton"
+            android:background="@drawable/ic_refresh_24px" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="165dp" android:layout_marginStart="165dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="166dp"
+            android:layout_marginRight="166dp"
+            android:layout_marginTop="130dp" app:layout_constraintTop_toBottomOf="@+id/textView3"
+            android:fadingEdge="horizontal|vertical" android:shadowColor="#000000"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hr" android:textSize="64sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="182dp" android:layout_marginStart="182dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="182dp"
+            android:layout_marginRight="182dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" app:layout_constraintHorizontal_bias="0.51"
+            android:textColor="#F44336"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

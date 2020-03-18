@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+    <TextView
+            android:text="HeartDoctor"
+            android:layout_width="203dp"
+            android:layout_height="79dp"
+            android:id="@+id/textView" android:textSize="36sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="22dp" android:layout_marginStart="22dp" android:layout_marginTop="28dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+            android:layout_marginEnd="31dp" android:layout_marginRight="31dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" app:srcCompat="@drawable/ic_healing_24px"
+            android:id="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="28dp"
+            tools:layout_editor_absoluteX="225dp"/>
+    <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/refreshButton"
+            android:background="@drawable/ic_save_24px" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="165dp" android:layout_marginStart="165dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="94dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="166dp"
+            android:layout_marginRight="166dp"/>
+    <TextView
+            android:text="Ustawienia"
+            android:layout_width="183dp"
+            android:layout_height="79dp"
+            android:id="@+id/textView" android:textSize="36sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="66dp" android:layout_marginStart="66dp" android:layout_marginTop="120dp"
+            app:layout_constraintTop_toTopOf="parent"
+    />
+    <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" app:srcCompat="@drawable/ic_settings_applications_24px"
+            android:id="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="120dp"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+    />
+    <TextView
+            android:text="wprowadź adres serwera:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" android:textSize="24sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="64dp" android:layout_marginStart="64dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="65dp" android:layout_marginRight="65dp" android:layout_marginTop="76dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintHorizontal_bias="0.596"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="98dp" android:layout_marginStart="98dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="100dp" android:layout_marginRight="100dp"
+            app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="36dp"/>
+    <TextView
+            android:text="TI2 sem6 Marcin Barczyk, Marcin Przybylski Telemedycyna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5" android:textSize="12sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="89dp" android:layout_marginStart="89dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="90dp" android:layout_marginRight="90dp" android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
