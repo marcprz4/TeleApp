@@ -1,3 +1,5 @@
+package com.example.tele;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +55,7 @@ public class HtmlDownloader {
         String result="";
         while ((line = br.readLine()) != null) {
             result+=line+"\n";
-    }
+        }
         return result;
     }
 
