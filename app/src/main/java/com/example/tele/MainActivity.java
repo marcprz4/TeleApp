@@ -16,13 +16,9 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     private TextView mTextViewResult;
+
     @Override
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
