@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView text;
+    private TextView text_hr, text_ox, status;
     private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
-        text=findViewById(R.id.textView);
-        button=findViewById(R.id.button);
+        text_hr=findViewById(R.id.text_view_result);
+        text_ox=findViewById(R.id.text_view_result_ox);
+        status=findViewById(R.id.status);
+        button=findViewById(R.id.connect);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +39,17 @@ public class MainActivity extends AppCompatActivity {
                 HtmlDownloader downloader= (HtmlDownloader) new HtmlDownloader(new HtmlDownloader.AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
-                        text.setText(output);
+                        if(output == "error")
+                        {
+                            status.setText("Niepoprawne");
+                        }
+                           else {
+                            status.setText("Poprawne");
+                            final String heart = output.substring(0, 3);
+                            final String oxy = output.substring(4, 6);
+                            text_hr.setText(heart);
+                            text_ox.setText(oxy);
+                        }
                     }
                 },"https://marcinprzybylsk.000webhostapp.com").execute();
             }
