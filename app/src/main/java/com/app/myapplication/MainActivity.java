@@ -1,5 +1,8 @@
 package com.app.myapplication;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.content.Intent;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,9 +26,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView2;
     private TextView textView3;
     private ImageView imageView;
+    public static String address;
+
+    public static void setAddress(String address) {
+        MainActivity.address = address;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        address="https://marcinprzybylsk.000webhostapp.com/";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT > 9)
@@ -46,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         settingsButton =findViewById(R.id.settingsButton);
 
         textView =findViewById(R.id.textView);
-        textView2 =findViewById(R.id.textView2);
+        textView2 =findViewById(R.id.textView);
         textView3 =findViewById(R.id.textView3);//
         imageView =findViewById(R.id.imageView);
 
@@ -57,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setAnimation(fromTop);
         textView2.setAnimation(fromTop);
         imageView.setAnimation(fromTop);
-
+        so.setAnimation(fromSide);
+        hr.setAnimation(fromSide);
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,11 +90,37 @@ public class MainActivity extends AppCompatActivity {
 
                             hr.setText(tempArr[0]);
                             so.setText(tempArr[1]+"%");
-                            so.setAnimation(fromSide);
-                            hr.setAnimation(fromSide);
+                            ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                                                hr,
+                                                PropertyValuesHolder.ofFloat("scaleX", 1.05f),
+                                                PropertyValuesHolder.ofFloat("scaleY", 1.05f));
+                            scaleDown.setDuration(510);
+
+                            scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+                            scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+
+                            scaleDown.start();
+
+                            ObjectAnimator scaleDown2 = ObjectAnimator.ofPropertyValuesHolder(
+                                    so,
+                                    PropertyValuesHolder.ofFloat("scaleX", 1.05f),
+                                    PropertyValuesHolder.ofFloat("scaleY", 1.05f));
+                            scaleDown2.setDuration(510);
+
+                            scaleDown2.setRepeatCount(ObjectAnimator.INFINITE);
+                            scaleDown2.setRepeatMode(ObjectAnimator.REVERSE);
+
+                            scaleDown2.start();
                         }
                     }
-                },"https://marcinprzybylsk.000webhostapp.com").execute();
+                },address).execute();
+            }
+        });
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
     }
