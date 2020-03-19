@@ -34,7 +34,7 @@ public class HtmlDownloader extends AsyncTask<Void, Void, String>  {
         String page=download();
         String result="";
         int st=page.indexOf("<body>")+6;
-        int end=page.indexOf("<div style");
+        int end=page.indexOf("</body");
         result=page.substring(st,end);
         String res="";
         for(char c:result.toCharArray()){
@@ -42,7 +42,6 @@ public class HtmlDownloader extends AsyncTask<Void, Void, String>  {
                 res+=c;
             }
         }
-        System.out.println("html:"+res);
         return res;
     }
 
@@ -65,10 +64,16 @@ public class HtmlDownloader extends AsyncTask<Void, Void, String>  {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            return loadValue();
-        } catch (IOException e) {
+            String ret="";
+            do {
+                Thread.sleep(2000);
+                ret=loadValue();
+                System.out.println(ret.length());
+            } while(ret.length()<=1);
+            return ret;
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            return "error";
+            return "EE:EE";
         }
     }
 

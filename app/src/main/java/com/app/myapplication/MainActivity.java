@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView2;
     private TextView textView3;
     private ImageView imageView;
-    public static String address;
+    public static String address="http://192.168.8.111/";
 
     public static void setAddress(String address) {
         MainActivity.address = address;
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        address="https://marcinprzybylsk.000webhostapp.com/";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT > 9)
@@ -72,48 +71,50 @@ public class MainActivity extends AppCompatActivity {
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //AsyncTaskExample asyncTask=new AsyncTaskExample();
-                //            asyncTask.execute("https://www.tutorialspoint.com/images/tp-logo-diamond.png");
+                System.out.println("click");
+                int i=0;
+                while(i<20){
+                    HtmlDownloader downloader= (HtmlDownloader) new HtmlDownloader(new HtmlDownloader.AsyncResponse() {
+                        @Override
+                        public void processFinish(String output) {
+                            if(output == "error")
+                            {
+                                System.err.println("ERROR");
+                            }
+                            else {
+                                String toSplit=output;
+                                String[] tempArr;
+                                tempArr=toSplit.split(":");
+                                System.out.println(toSplit);
+                                hr.setText(tempArr[0]);
+                                so.setText(tempArr[1]);
+                                ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                                        hr,
+                                        PropertyValuesHolder.ofFloat("scaleX", 1.05f),
+                                        PropertyValuesHolder.ofFloat("scaleY", 1.05f));
+                                scaleDown.setDuration(510);
 
-                HtmlDownloader downloader= (HtmlDownloader) new HtmlDownloader(new HtmlDownloader.AsyncResponse() {
-                    @Override
-                    public void processFinish(String output) {
-                        if(output == "error")
-                        {
-//                            status.setText("Błąd połączenia");
+                                scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+                                scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+
+                                scaleDown.start();
+
+                                ObjectAnimator scaleDown2 = ObjectAnimator.ofPropertyValuesHolder(
+                                        so,
+                                        PropertyValuesHolder.ofFloat("scaleX", 1.05f),
+                                        PropertyValuesHolder.ofFloat("scaleY", 1.05f));
+                                scaleDown2.setDuration(510);
+
+                                scaleDown2.setRepeatCount(ObjectAnimator.INFINITE);
+                                scaleDown2.setRepeatMode(ObjectAnimator.REVERSE);
+
+                                scaleDown2.start();
+                            }
                         }
-                           else {
-//                            status.setText("Poprawne");
-                            String toSplit=output;
-                            String[] tempArr;
-                            tempArr=toSplit.split(":");
+                    },address).execute();
+                    i++;
+                }
 
-                            hr.setText(tempArr[0]);
-                            so.setText(tempArr[1]+"%");
-                            ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
-                                                hr,
-                                                PropertyValuesHolder.ofFloat("scaleX", 1.05f),
-                                                PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-                            scaleDown.setDuration(510);
-
-                            scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
-                            scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
-
-                            scaleDown.start();
-
-                            ObjectAnimator scaleDown2 = ObjectAnimator.ofPropertyValuesHolder(
-                                    so,
-                                    PropertyValuesHolder.ofFloat("scaleX", 1.05f),
-                                    PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-                            scaleDown2.setDuration(510);
-
-                            scaleDown2.setRepeatCount(ObjectAnimator.INFINITE);
-                            scaleDown2.setRepeatMode(ObjectAnimator.REVERSE);
-
-                            scaleDown2.start();
-                        }
-                    }
-                },address).execute();
             }
         });
         settingsButton.setOnClickListener(new View.OnClickListener() {
