@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
         imageView.setAnimation(fromTop);
         so.setAnimation(fromSide);
         hr.setAnimation(fromSide);
-
+        hr.setText("--");
+        so.setText("--");
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("click");
                 int i=0;
                 while(i<20){
                     HtmlDownloader downloader= (HtmlDownloader) new HtmlDownloader(new HtmlDownloader.AsyncResponse() {
@@ -85,14 +85,13 @@ public class MainActivity extends AppCompatActivity {
                                 String toSplit=output;
                                 String[] tempArr;
                                 tempArr=toSplit.split(":");
-                                System.out.println(toSplit);
                                 hr.setText(tempArr[0]);
                                 so.setText(tempArr[1]);
                                 ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
                                         hr,
-                                        PropertyValuesHolder.ofFloat("scaleX", 1.05f),
-                                        PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-                                scaleDown.setDuration(510);
+                                        PropertyValuesHolder.ofFloat("scaleX", 1.08f),
+                                        PropertyValuesHolder.ofFloat("scaleY", 1.08f));
+                                scaleDown.setDuration(450);
 
                                 scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
                                 scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
@@ -101,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 ObjectAnimator scaleDown2 = ObjectAnimator.ofPropertyValuesHolder(
                                         so,
-                                        PropertyValuesHolder.ofFloat("scaleX", 1.05f),
-                                        PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-                                scaleDown2.setDuration(510);
+                                        PropertyValuesHolder.ofFloat("scaleX", 1.08f),
+                                        PropertyValuesHolder.ofFloat("scaleY", 1.08f));
+                                scaleDown2.setDuration(450);
 
                                 scaleDown2.setRepeatCount(ObjectAnimator.INFINITE);
                                 scaleDown2.setRepeatMode(ObjectAnimator.REVERSE);
@@ -114,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                     },address).execute();
                     i++;
                 }
-
             }
         });
         settingsButton.setOnClickListener(new View.OnClickListener() {

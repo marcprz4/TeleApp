@@ -66,9 +66,8 @@ public class HtmlDownloader extends AsyncTask<Void, Void, String>  {
         try {
             String ret="";
             do {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 ret=loadValue();
-                System.out.println(ret.length());
             } while(ret.length()<=1);
             return ret;
         } catch (IOException | InterruptedException e) {
