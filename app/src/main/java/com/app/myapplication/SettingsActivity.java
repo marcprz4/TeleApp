@@ -1,6 +1,7 @@
 package com.app.myapplication;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -9,10 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class SettingsActivity extends AppCompatActivity {
-//
+    //
     private EditText editText;
     private Button saveButton;
     private TextView title;
@@ -25,22 +25,23 @@ public class SettingsActivity extends AppCompatActivity {
     private Animation fromBottom;
     private Animation fromTop;
     private Animation fromSide;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        editText=findViewById(R.id.editText);
-        saveButton=findViewById(R.id.saveButton);
-        title =findViewById(R.id.title);
-        logo =findViewById(R.id.logo);
-        settingsTitle =findViewById(R.id.settingsTitle);
-        settingsLogo =findViewById(R.id.settingsLogo);
-        addressTitle =findViewById(R.id.addressTitle);
-        bottomText =findViewById(R.id.bottomText);
+        editText = findViewById(R.id.editText);
+        saveButton = findViewById(R.id.saveButton);
+        title = findViewById(R.id.title);
+        logo = findViewById(R.id.logo);
+        settingsTitle = findViewById(R.id.settingsTitle);
+        settingsLogo = findViewById(R.id.settingsLogo);
+        addressTitle = findViewById(R.id.addressTitle);
+        bottomText = findViewById(R.id.bottomText);
 
-        fromBottom= AnimationUtils.loadAnimation(this,R.anim.frombottom);
-        fromTop= AnimationUtils.loadAnimation(this,R.anim.fromtop);
-        fromSide= AnimationUtils.loadAnimation(this,R.anim.fromside);
+        fromBottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
+        fromTop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
+        fromSide = AnimationUtils.loadAnimation(this, R.anim.fromside);
         title.setAnimation(fromTop);
         logo.setAnimation(fromTop);
         settingsTitle.setAnimation(fromTop);
