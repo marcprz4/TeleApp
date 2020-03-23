@@ -27,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView3;
     private ImageView imageView;
     public static String address="http://192.168.8.111/";
+    int hr_average;
 
+    int so_average;
+
+    int i=0;
     public static void setAddress(String address) {
         MainActivity.address = address;
     }
@@ -72,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i=0;
+
+
                 while(i<20){
                     HtmlDownloader downloader= (HtmlDownloader) new HtmlDownloader(new HtmlDownloader.AsyncResponse() {
                         @Override
@@ -87,31 +92,39 @@ public class MainActivity extends AppCompatActivity {
                                 tempArr=toSplit.split(":");
                                 hr.setText(tempArr[0]);
                                 so.setText(tempArr[1]);
-                                ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
-                                        hr,
-                                        PropertyValuesHolder.ofFloat("scaleX", 1.08f),
-                                        PropertyValuesHolder.ofFloat("scaleY", 1.08f));
-                                scaleDown.setDuration(450);
+                                hr_average+=Integer.parseInt(tempArr[0]);
+                                so_average+=Integer.parseInt(tempArr[1]);
 
-                                scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
-                                scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+                                if(i==10 || i==20) {
+                                    ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                                            hr_average / 10,
+                                            PropertyValuesHolder.ofFloat("scaleX", 1.08f),
+                                            PropertyValuesHolder.ofFloat("scaleY", 1.08f));
+                                    scaleDown.setDuration(450);
 
-                                scaleDown.start();
+                                    scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+                                    scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
 
-                                ObjectAnimator scaleDown2 = ObjectAnimator.ofPropertyValuesHolder(
-                                        so,
-                                        PropertyValuesHolder.ofFloat("scaleX", 1.08f),
-                                        PropertyValuesHolder.ofFloat("scaleY", 1.08f));
-                                scaleDown2.setDuration(450);
+                                    scaleDown.start();
 
-                                scaleDown2.setRepeatCount(ObjectAnimator.INFINITE);
-                                scaleDown2.setRepeatMode(ObjectAnimator.REVERSE);
+                                    ObjectAnimator scaleDown2 = ObjectAnimator.ofPropertyValuesHolder(
+                                            so_average / 10,
+                                            PropertyValuesHolder.ofFloat("scaleX", 1.08f),
+                                            PropertyValuesHolder.ofFloat("scaleY", 1.08f));
+                                    scaleDown2.setDuration(450);
 
-                                scaleDown2.start();
+                                    scaleDown2.setRepeatCount(ObjectAnimator.INFINITE);
+                                    scaleDown2.setRepeatMode(ObjectAnimator.REVERSE);
+
+                                    scaleDown2.start();
+                                    hr_average=0;
+                                    so_average=0;
+                                }
                             }
                         }
                     },address).execute();
                     i++;
+
                 }
             }
         });
