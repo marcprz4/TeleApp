@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String address = "http://192.168.8.111/";
+    public static String address = "http://192.168.43.204/";
     List<Integer> hrTab;
     List<Integer> soTab;
     private TextView hr, so;//, status;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                                     hrSum = hrSum / 5;
                                     soSum = soSum / 5;
                                     hr.setText(String.valueOf(hrSum));
-                                    so.setText(String.valueOf(soSum));
+                                    so.setText(String.valueOf(soSum)+"%");
                                     hrTab.clear();
                                     soTab.clear();
                                 }
