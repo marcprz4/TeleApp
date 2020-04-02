@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView2;
     private TextView textView3;
     private ImageView imageView;
-
+    private static final int SIZE=20;
+    private static final int AVG=SIZE/3;
+    int hrSum = 0;
     public static void setAddress(String address) {
         MainActivity.address = address;
     }
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int i = 0;
+
                 while (i < 20) {
                     HtmlDownloader downloader = (HtmlDownloader) new HtmlDownloader(new HtmlDownloader.AsyncResponse() {
                         @Override
@@ -89,21 +93,45 @@ public class MainActivity extends AppCompatActivity {
                                 String toSplit = output;
                                 String[] tempArr;
                                 tempArr = toSplit.split(":");
-                                hrTab.add(Integer.parseInt(tempArr[0]));
-                                soTab.add(Integer.parseInt(tempArr[1]));
+
                                 System.out.print(tempArr[0] + " " + tempArr[1]);
                                 System.out.println();
-                                if (hrTab.size() == 5) {
+
+                                if(hrTab.size()==AVG) {
+                                    for(Integer i:hrTab) {
+                                        hrSum+=i;
+                                    }
+                                    hrSum=hrSum/AVG;
+                                    if(hrSum<80-40||hrSum>80+40){
+                                        hr.setText("Popraw palec");
+                                    }
+                                }
+                                    hrTab.add(Integer.parseInt(tempArr[0]));
+                                    soTab.add(Integer.parseInt(tempArr[1]));
+                                if (hrTab.size() == SIZE) {
                                     System.out.println("counting avg");
-                                    int hrSum = 0;
+
                                     int soSum = 0;
-                                    for (int k = 0; k < 5; k++) {
-                                        hrSum += hrTab.get(k);
+                                    for (int k = 0; k < SIZE; k++) {
+//                                      hrSum += hrTab.get(k);
+                                        
                                         soSum += soTab.get(k);
                                     }
-                                    hrSum = hrSum / 5;
-                                    soSum = soSum / 5;
-                                    hr.setText(String.valueOf(hrSum));
+
+                                    int median;
+                                    int [] array=new int[hrTab.size()];
+                                    for(int i=0;i<array.length;i++){
+                                        array[i]=hrTab.get(i);
+                                    }
+                                    Arrays.sort(array);
+                                    if(array.length%2==1){
+                                        median = array[array.length/2];
+                                    } else {
+                                        median=median = (array[array.length/2] + array[array.length/2-1])/2;
+                                    }
+//                                    hrSum = hrSum / SIZE;
+                                    soSum = soSum / SIZE;
+                                    hr.setText(String.valueOf(median));
                                     so.setText(String.valueOf(soSum)+"%");
                                     hrTab.clear();
                                     soTab.clear();
@@ -134,7 +162,11 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }, address).execute();
-                    i++;
+                    if(hr.getText().equals("Popraw palec")){
+                        i=999;
+                    } else {
+                        i++;
+                    }
                 }
             }
         });
